@@ -42,6 +42,7 @@ bing_daily_wallpaper
 You can run this command at boot time if you want to change your wallpaper everyday.
 
 
+
 ### Options
 
 - __--directory `/path/to/dir`__
