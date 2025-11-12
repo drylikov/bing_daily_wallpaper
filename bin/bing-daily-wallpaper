@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const { promises: fs, constants } = require("fs");
+const path = require("path");
+const setBingDailyWallpaper = require("../index.js");
+const argv = require("minimist")(process.argv.slice(2));
+
+const getUserHome = function () {
+  return process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"];
+};
+
+async function ensureWallpaperDirectoryExists() {
+  // If --directory is not set, wallpapers go in ~/.bing-wallpapers
+  const directory =
+    argv.directory || path.join(getUserHome(), ".bing-wallpapers");
+  try {
+    await fs.access(directory, constants.W_OK);
+    return directory;
+  } catch (err) {
+    if (err.code !== "ENOENT") {
+      console.error(`Cannot write in ${directory}`);
+      throw err;
+    }
+  }
+
+  try {
+    await fs.mkdir(directory);
+    return directory;
+  } catch (err) {
+    console.error("Could not create wallpaper directory");
+    throw err;
+  }
+}
+
+(async function () {
+  const directory = await ensureWallpaperDirectoryExists();
+  await setBingDailyWallpaper(directory);
+  console.log("Wallpaper updated.");
+})();
