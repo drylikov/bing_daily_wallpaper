@@ -49,6 +49,7 @@ You can run this command at boot time if you want to change your wallpaper every
 
 
 
+
 - __--directory `/path/to/dir`__
 
   Use --directory to choose the directory in which you want your wallpapers to be saved. By default, they will be saved in `$HOME/.bing-wallpapers`.
