@@ -31,6 +31,7 @@ sudo npm install -g bing_daily_wallpaper
 
 ### Usage
 
+
 ```bash
 bing_daily_wallpaper
 ```
