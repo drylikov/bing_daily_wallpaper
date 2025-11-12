@@ -44,6 +44,7 @@ You can run this command at boot time if you want to change your wallpaper every
 
 
 
+
 ### Options
 
 - __--directory `/path/to/dir`__
